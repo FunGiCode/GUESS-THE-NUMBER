@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta tags -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Title -->
+    <title>Guess a Numba</title>
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Style -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        height: 100%;
+        font-family: "Poppins", sans-serif;
+      }
+      main {
+        height: 100%;
+        background-color: #222222;
+        display: grid;
+        place-content: center;
+        gap: 2rem;
+        padding: 0 1rem;
+      }
+
+      h1 {
+        text-align: center;
+        color: white;
+        font-size: 3rem;
+      }
+
+      input {
+        width: 100%;
+        max-width: 400px;
+        font-size: 2rem;
+        padding: 5px 10px;
+        border: none;
+        outline: none;
+        margin: 0 auto;
+      }
+
+      button {
+        max-width: 200px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 1rem 10px;
+        border: none;
+        font-weight: bolder;
+        background-color: #acffaf;
+        cursor: pointer;
+        transition: 0.5s background-color;
+      }
+
+      button:hover {
+        background-color: #6fff74;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Guess a number between 1-10</h1>
+      <input type="number" min="1" max="10" />
+      <button>GUESS</button>
+    </main>
+    <!-- Script -->
+    <script>
+      const input = document.querySelector("input");
+      const guessBtn = document.querySelector("button");
+
+      guessBtn.addEventListener("click", gameLogic);
+
+      window.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") gameLogic();
+      });
+
+      function gameLogic() {
+        const inputValue = parseInt(input.value);
+
+        const randValue = randBetweenOneAndTen();
+
+        if (inputValue && inputValue >= 1 && inputValue <= 10) {
+          if (inputValue === randValue) alert("YOU WINNN!!!");
+          else alert("YOU LOSE! The value was " + randValue + " loser :)");
+        } else {
+          alert(
+            "The value is invalid, please add a number between 1 and 10..."
+          );
+        }
+
+        input.value = "";
+      }
+
+      function randBetweenOneAndTen() {
+        return Math.floor(Math.random() * 10) + 1;
+      }
+    </script>
+  </body>
+</html>
